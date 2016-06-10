@@ -1,0 +1,83 @@
+<div>
+    <h1>Каталог книг</h1>    
+    <p>{{ message}}</p>
+	
+	<form>
+	  <div class="form-group">
+		<div class="input-group">
+		  <div class="input-group-addon"><i class="glyphicon glyphicon-search"></i></div>
+		  <input type="text" class="form-control" placeholder="Нати" ng-model="searchFish">
+		</div>
+	  </div>
+	</form>
+	
+    <div ng-show="books.length > 0">
+          
+		  
+		  <!--
+		  <p>Sort Type: {{ sortType }}</p>
+	  	  <p>Sort Reverse: {{ sortReverse }}</p>
+          <p>Search Query: {{ searchFish }}</p>
+		  -->
+		
+  
+        <table  class="table table-striped" items-on-page = "5">
+            <thead>
+            <th>
+				<a  ng-click="sortType = 'Title'; sortReverse = !sortReverse">Название
+					<span ng-show="sortType == 'Title' && !sortReverse" >up</span>
+					<span ng-show="sortType == 'Title' && sortReverse" >down</span>
+				</a>
+			</th>
+				
+            <th>
+				<a  ng-click="sortType = 'Author'; sortReverse = !sortReverse">Автор
+					<span ng-show="sortType == 'Author' && !sortReverse">up</span>
+					<span ng-show="sortType == 'Author' && sortReverse" >down</span>
+				</a>
+			</th>
+			
+            <th>Год</th>
+            <th>Описание</th>
+			<th>Обложка</th>
+            <th style="width:120px;">Действия&nbsp;</th>
+            </thead>
+            <tbody>
+                <tr ng-repeat="data in books | orderBy:sortType:sortReverse | filter:searchFish">
+                    <td>{{data.Title}}</td>
+                    <td>{{data.Author}}</td>
+                    <td>{{data.Year}}</td>
+                    <td>{{data.Prewiev}}</td>
+                    <td>{{data.IMG}}</td>
+					<td>
+						 <a class="btn btn-primary btn-xs" href="#/book/detail/{{data.ID}}">
+                            <i class="glyphicon glyphicon-search"></i>
+                        </a>
+					
+                        <a class="btn btn-primary btn-xs" href="#/book/update/{{data.ID}}">
+                            <i class="glyphicon glyphicon-pencil"></i>
+                        </a> 
+                        <a class="btn btn-danger btn-xs" ng-click="deleteBook(data.ID)">
+                            <i class="glyphicon glyphicon-trash"></i>
+                        </a>
+						
+						
+                    </td>
+                </tr>
+            </tbody>
+			
+        </table>
+		
+		
+		<a class="btn btn-primary" href="#/book/create">
+            <i class="glyphicon glyphicon-plus"></i> Добавить
+        </a>
+		
+    </div>
+	
+	
+	
+    <div ng-show="book.length == 0">
+        Каталог книг пуст
+    </div>
+</div>

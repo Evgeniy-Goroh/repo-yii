@@ -1,0 +1,18 @@
+<div>
+    <h1>Информация о книге</h1>
+ 
+    <form role="form" name="myForm">
+        		
+		<div><b>Название:</b> {{ book.Title}}</div>
+		<div><b>Автор:</b> {{ book.Author}}</div>
+		<div><b>Год:</b> {{ book.Year}}</div>
+		<div><b>Описание:</b> {{ book.Prewiev}}</div>
+		<div><b>Обложка:</b> {{ book.IMG}}</div>
+		
+        <a href="#/book/index" class="btn btn-default">Отмена</a>
+		
+		<a href="#/book/update/{{book.ID}}" class="btn btn-default">Редактировать</a>
+        
+		<a ng-click="deleteBook(book.ID)" class="btn btn-default">Удалить</a>
+    </form>
+</div>
